@@ -1,2 +1,3 @@
 src/templates/*.js
 test/test-src-to-lint/**/*.js
+test/out-cli.js
