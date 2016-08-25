@@ -1,74 +1,28 @@
 import path from 'path';
 import jsStringEscape from 'js-string-escape';
+import handlebars from 'handlebars';
 
 export default (opts, results) => {
-  // opts defines the following we can use to generate tests
-  // suiteStart - A String that defines the start of a test suite or a series of assertions
-  // assert - A String that defines a single assertion or lint rolled into an assertion
-  // suiteEnd - A String that defines the end of the test suite (eg function close)
-  const generateAssertWithOpts = generateAssert.bind(null, opts);
-  const imports = generateImports(opts);
-  const suiteStart = generateSuiteStart(opts);
-  const suiteEnd = generateSuiteEnd(opts);
-  const assertions = results.map(generateAssertWithOpts)
-    .join('\n');
+  const handleBarsData = {
+    results: results.map((lintResult) => {
+      const file = path.relative('src', lintResult.filePath);
+      const lintOK = lintResult.errorCount === 0;
+      let message;
 
-  return `${imports}${suiteStart}${assertions}${suiteEnd}`;
+      if (lintResult.errorCount > 0) {
+        message = `${file} should pass lint.\\n${jsStringEscape(renderErrors(lintResult.messages))}`;
+      } else {
+        message = `${file} should pass lint.`;
+      }
+
+      return {file, lintOK, message};
+    }),
+  };
+
+  const template = handlebars.compile(opts.template);
+
+  return template(handleBarsData);
 };
-
-function generateImports(opts) {
-  if (!opts.imports) {
-    return '';
-  }
-
-  return `${opts.imports.join('\n')}\n\n`;
-}
-
-function generateSuiteStart(opts) {
-  if (!opts.suiteStart) {
-    return '';
-  }
-
-  return `${opts.suiteStart}\n`;
-}
-
-function generateSuiteEnd(opts) {
-  if (!opts.suiteEnd) {
-    return '';
-  }
-
-  return `${opts.suiteEnd}\n`;
-}
-
-function generateAssert(opts, lint) {
-  const relativePath = path.relative('src', lint.filePath);
-  const errors = lint.messages;
-
-  const regexFile = /\{\{ *file *\}\}/;
-  const regexLintOk = /\{\{ *lintOK *\}\}/;
-  const regexMessage = /\{\{ *message *\}\}/;
-
-  let assertMessage = opts.assert;
-  let message;
-
-  if (lint.errorCount > 0) {
-    message = `${relativePath} should pass lint.\\n${jsStringEscape(renderErrors(errors))}`;
-  } else {
-    message = `${relativePath} should pass lint.`;
-  }
-
-  // drop in templated values
-  assertMessage = assertMessage.replace(regexFile, relativePath);
-  assertMessage = assertMessage.replace(regexLintOk, lint.errorCount === 0);
-  assertMessage = assertMessage.replace(regexMessage, message);
-  assertMessage = assertMessage.split('\n')
-    .map((messageLine) => {
-      return `  ${messageLine}`;
-    })
-    .join('\n');
-
-  return `${assertMessage}\n`;
-}
 
 function renderErrors(errors) {
   if (!errors) {
@@ -76,6 +30,6 @@ function renderErrors(errors) {
   }
 
   return errors.map((error) => {
-    return `${error.line}:${error.column} - ${error.message} (${error.ruleId})`;
+    return `${error.line}:${error.column} - ${error.message} ${error.ruleId !== null ? `(error.ruleId)` : '' }`;
   }).join('\n');
 }

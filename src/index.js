@@ -2,8 +2,8 @@ import glob from 'glob';
 import * as eslint from 'eslint';
 
 import mocha from './mocha';
-import qunit from './qunit';
 import generateTests from './generate-tests';
+import qunit from './qunit';
 
 const CLIEngine = eslint.CLIEngine;
 const SUITES = {mocha, qunit};
@@ -11,24 +11,29 @@ const SUITES = {mocha, qunit};
 export default (opts) => {
 
   if (!opts) {
-    throw new Error('You must pass in an options object');
+    throw new Error('Please pass in an options object');
   }
 
-  if (!opts.assert && !opts.suite) {
-    throw new Error(`You should either pass a variable suite that's value is either:\n${Object.keys(SUITES).map((suite) => `- ${suite}`).join('\n')}\nOr pass in an assert template\n`);
-  } else if (opts.suite && !SUITES[opts.suite]) {
-    throw new Error(`suite should be one of the following values:\n${Object.keys(SUITES).map((suite) => `- ${suite}`).join('\n')}\n`);
+  if (!opts.template) {
+    throw new Error(
+      'Your options object should define `template` which could be one of the following values\n' +
+      `${Object.keys(SUITES)
+        .map((suiteName) => {
+          return `- ${suiteName}`;
+        })
+        .join('\n')}\n` +
+      'Or it should be a handlebars template which defines and sets up your tests (see README.md)\n\n'
+    );
   }
 
-  if (!opts.paths) {
-    throw new Error('You must pass in paths which either a String of files to lint or an Array of paths to lint');
-  }
+  const options = Object.assign(
+    {},
+    opts
+  );
 
-  let options = opts;
-
-  // generate opts from suite
-  if (opts.suite) {
-    options = SUITES[opts.suite](opts);
+  // check if there's a suite for this template
+  if (SUITES[options.template]) {
+    options.template = SUITES[options.template];
   }
 
   // the following will get an array of all paths to lint
@@ -56,5 +61,3 @@ function getPaths(opts) {
     return allPaths.concat(newPaths);
   }, []);
 }
-
-export {mocha};

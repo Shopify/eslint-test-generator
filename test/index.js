@@ -1,7 +1,7 @@
 import eslintTestGenerator, {mocha} from '../src/';
 
 console.log(eslintTestGenerator({
-  suite: 'mocha',
+  template: 'qunit',
   paths: [
     'test/**/*.js',
     'src/**/*.js',
