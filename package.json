@@ -1,7 +1,7 @@
 {
   "name": "eslint-test-generator",
   "version": "1.0.1",
-  "description": "will create test output based on eslint output. Basically developers can't ignore linting if it's integrated into ci",
+  "description": "Will create test scripts based on eslint output. Basically developers can't ignore linting if it's integrated into ci",
   "main": "lib/index.js",
   "license": "MIT",
   "author": "Shopify Inc.",
