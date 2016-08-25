@@ -1,12 +1,10 @@
 import glob from 'glob';
 import * as eslint from 'eslint';
 
-import mocha from './mocha';
 import generateTests from './generate-tests';
-import qunit from './qunit';
+import SUITES from './suites';
 
 const CLIEngine = eslint.CLIEngine;
-const SUITES = {mocha, qunit};
 
 export default (opts) => {
 
