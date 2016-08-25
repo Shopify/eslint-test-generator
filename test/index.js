@@ -1,14 +1,14 @@
-import eslintTestGenerator, {mocha} from '../src/';
+import path from 'path';
+
+import eslintTestGenerator from '../src/';
 
 console.log(eslintTestGenerator({
   template: 'qunit',
   paths: [
-    'test/**/*.js',
-    'src/**/*.js',
+    'test/test-src-to-lint/**/*.js',
   ],
+  optsEslint: {
+    configFile: path.resolve(__dirname, '..', '.eslintrc.json'),
+    ignore: false
+  },
 }));
-
-
-var somethin = function() {
-
-};

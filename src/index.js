@@ -25,7 +25,9 @@ export default (opts) => {
   }
 
   const options = Object.assign(
-    {},
+    {
+      optsEslint: null,
+    },
     opts
   );
 
@@ -39,7 +41,7 @@ export default (opts) => {
 
   // now we want to run eslint  on all those paths we can assume that
   // an eslint config is setup
-  const eslintEngine = new CLIEngine();
+  const eslintEngine = new CLIEngine(opts.optsEslint);
   const results = eslintEngine.executeOnFiles(paths).results;
 
   // now that we have results we want to JS some JS and return it

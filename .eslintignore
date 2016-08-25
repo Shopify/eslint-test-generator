@@ -1,1 +1,2 @@
 src/templates/*.js
+test/test-src-to-lint/**/*.js

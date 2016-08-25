@@ -5,7 +5,7 @@ import handlebars from 'handlebars';
 export default (opts, results) => {
   const handleBarsData = {
     results: results.map((lintResult) => {
-      const file = path.relative('src', lintResult.filePath);
+      const file = path.relative(process.cwd(), lintResult.filePath);
       const lintOK = lintResult.errorCount === 0;
       let message;
 
