@@ -24,8 +24,8 @@
     "test": "npm run lint-allow-warning && npm run test-cli && mocha --compilers js:babel-register test/index.js && rm test/out-cli.js",
     "test-cli": "npm run prepublish && node lib/cli.js mocha test/test-src-to-lint/**/*.js > test/out-cli.js",
     "prepublish": "babel -d lib/ --ignore src/templates src/ && cp -r src/templates lib/templates",
-    "lint": "eslint --max-warnings 0 -c .eslintrc.json src/ test/",
-    "lint-allow-warning": "eslint -c .eslintrc.json src/ test/"
+    "lint": "eslint --max-warnings 0 src/ test/",
+    "lint-allow-warning": "eslint src/ test/"
   },
   "keywords": [
     "eslint,test,generator,generation,tape,tap,qunit,mocha"
