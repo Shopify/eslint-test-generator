@@ -61,3 +61,5 @@ function getPaths(opts) {
     return allPaths.concat(newPaths);
   }, []);
 }
+
+export {SUITES as suites};
