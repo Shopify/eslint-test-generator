@@ -31,11 +31,6 @@ export default (opts) => {
     opts
   );
 
-  // check if there's a suite for this template
-  if (SUITES[options.template]) {
-    options.template = SUITES[options.template];
-  }
-
   // the following will get an array of all paths to lint
   const paths = getPaths(options);
 

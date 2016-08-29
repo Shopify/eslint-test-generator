@@ -15,11 +15,7 @@ if (args.length < 2) {
   );
 }
 
-let [template, paths] = args;
-
-if (!SUITES[template]) {
-  template = fs.readFileSync(template, 'utf8');
-}
+const [template, paths] = args;
 
 console.log(api({
   template,

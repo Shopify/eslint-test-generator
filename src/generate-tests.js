@@ -1,6 +1,8 @@
-import path from 'path';
-import jsStringEscape from 'js-string-escape';
 import handlebars from 'handlebars';
+import jsStringEscape from 'js-string-escape';
+import path from 'path';
+
+import resolveTemplate from './resolve-template';
 
 export default (opts, results) => {
   const handleBarsData = {
@@ -19,7 +21,7 @@ export default (opts, results) => {
     }),
   };
 
-  const template = handlebars.compile(opts.template);
+  const template = handlebars.compile(resolveTemplate(opts));
 
   return template(handleBarsData);
 };
