@@ -21,8 +21,7 @@
     "mocha": "^3.0.2"
   },
   "scripts": {
-    "test": "npm run lint-allow-warning && npm run test-cli && mocha --compilers js:babel-register test/index.js && rm test/out-cli.js",
-    "test-cli": "npm run prepublish && node lib/cli.js mocha test/test-src-to-lint/**/*.js > test/out-cli.js",
+    "test": "npm run lint-allow-warning && mocha --compilers js:babel-register test/index.js",
     "prepublish": "babel -d lib/ --ignore src/templates src/ && cp -r src/templates lib/templates",
     "lint": "eslint --max-warnings 0 -c .eslintrc.json src/ test/",
     "lint-allow-warning": "eslint -c .eslintrc.json src/ test/"
@@ -37,8 +36,5 @@
   "homepage": "https://github.com/shopify/eslint-test-generator",
   "bugs": {
     "url": "https://github.com/shopify/eslint-test-generator/issues"
-  },
-  "bin": {
-    "eslint-test-generator": "lib/cli.js"
   }
 }

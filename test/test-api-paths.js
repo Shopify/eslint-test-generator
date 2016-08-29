@@ -34,6 +34,6 @@ export default () => {
       },
     });
 
-    assert(generatedTests, expected, 'generated source matched expected source');
+    assert.equal(generatedTests, expected, 'generated source matched expected source');
   });
 };

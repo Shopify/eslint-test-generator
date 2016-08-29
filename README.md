@@ -44,34 +44,13 @@ describe('lint all files', () => {
 ## API Documentation
 
 The following options can be passed to `eslint-test-generator`:
-- `template` - This can be a `handlebars` template string or one of the following values:
+- `template` - Can be one of three things. A path to a `handlebars` template file or a `handlebars` template string or one of the following values:
   + `'mocha'`
   + `'qunit'`
 - `paths` - Either a glob String or Array an array of globs. eg:
   + `src/` 
   + `['src/filesToLint/**.js', 'test/'']`
   + etc.
-
-## CLI Usage
-
-`eslint-test-generator` also provides a CLI api. The CLI takes two arguments:
-- `template` - A path to a `handlebars` template or one of the or one of the following values:
-  + `'mocha'`
-  + `'qunit'`
-- `paths` - either one path or a list of paths eg.
-  + `src/`
-  + `src/,test/`
-
-A typical CLI call looks like this:
-```bash
-$ eslint-test-generator mocha src/,test/ > eslint-tests.js
-```
-
-Using a different `handlebars` template:
-```bash
-$ eslint-test-generator template/yourFavouritTestSuite.hbs src/ > eslint-tests.js
-```
-
 
 ## License
 
