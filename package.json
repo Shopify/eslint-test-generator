@@ -22,7 +22,7 @@
   },
   "scripts": {
     "test": "npm run lint-allow-warning && mocha --compilers js:babel-register test/index.js",
-    "prepublish2": "babel -d lib/ --ignore src/templates src/ && cp -r src/templates lib/templates",
+    "prepublish": "babel -d lib/ --ignore src/templates src/ && cp -r src/templates lib/templates",
     "lint": "eslint --max-warnings 0 -c .eslintrc.json src/ test/",
     "lint-allow-warning": "eslint -c .eslintrc.json src/ test/"
   },
