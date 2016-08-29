@@ -3,4 +3,4 @@ machine:
     version: v4.5.0
 dependencies:
   override:
-    - npm install
+    - bash --login -c "npm install"
