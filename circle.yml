@@ -3,4 +3,4 @@ machine:
     version: v4.5.0
 dependencies:
   override:
-    - bash --login -c "npm install"
+    - npm install 2>&1 | tee npm-i-log.txt
