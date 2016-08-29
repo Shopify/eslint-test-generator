@@ -1,7 +1,8 @@
-import 'qunitjs';
+module('lint all files');
 
-test('lint all files', (assert) => {
-  {{#each results}}
+{{#each results}}
+test('{{file}}', (assert) => {
   assert.ok({{lintOK}}, '{{message}}');
-  {{/each}}
 });
+
+{{/each}}
