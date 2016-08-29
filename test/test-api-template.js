@@ -4,7 +4,7 @@ import assert from 'assert';
 
 import generator from '../src/';
 
-const TEMPLATE = 
+const TEMPLATE =
 `describe('lint all files', () => {
   {{#each results}}
   it('{{file}} should lint', () => {

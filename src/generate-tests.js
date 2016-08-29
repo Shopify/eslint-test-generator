@@ -32,6 +32,6 @@ function renderErrors(errors) {
   }
 
   return errors.map((error) => {
-    return `${error.line}:${error.column} - ${error.message} ${error.ruleId !== null ? `(error.ruleId)` : '' }`;
+    return `${error.line}:${error.column} - ${error.message} ${error.ruleId !== null ? error.ruleId : ''}`;
   }).join('\n');
 }

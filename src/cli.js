@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
-import fs from 'fs'; // eslint-disable-line node/shebang
-
-import SUITES from './suites';
+import SUITES from './suites'; // eslint-disable-line node/shebang
 import api from './index';
 
 const args = process.argv.slice(2);
