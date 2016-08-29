@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Shopify Inc.",
   "dependencies": {
-    "eslint": "^3.3.1",
+    "eslint": "3.3.x",
     "glob": "^7.0.5",
     "handlebars": "^4.0.5",
     "js-string-escape": "^1.0.1"
