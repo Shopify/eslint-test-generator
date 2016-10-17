@@ -30,12 +30,12 @@ console.log(output); // generated JS source for tests using mocha
 When the above is done `src` and `test` directories will be linted by `eslint` and the output would look something like this:
 
 ```javascript
-describe('lint all files', () => {
-  it('src/a.js should lint', () => {
+suite('lint all files', () => {
+  test('src/a.js should lint', () => {
     assert.ok(true, 'test/test-src-to-lint/some-warnings.js should pass lint.');
   });
 
-  it('src/b.js should lint', () => {
+  test('src/b.js should lint', () => {
     assert.ok(false, 'test/test-src-to-lint/some-errors.js should pass lint.\n1:4 - Parsing error: Unexpected token ');
   });
 });
