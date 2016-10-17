@@ -5,12 +5,12 @@ import assert from 'assert';
 import generator from '../src/';
 
 const TEMPLATE =
-`describe('lint all files', () => {
+`suite('lint all files', () => {
   {{#each results}}
-  it('{{file}} should lint', () => {
+  test('{{file}} should lint', () => {
     assert.ok({{lintOK}}, '{{message}}');
   });
-  
+
   {{/each}}
 });
 `;
