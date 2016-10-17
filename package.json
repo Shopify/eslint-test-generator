@@ -1,6 +1,6 @@
 {
   "name": "eslint-test-generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Will create test scripts based on eslint output. Basically developers can't ignore linting if it's integrated into ci",
   "main": "lib/index.js",
   "license": "MIT",
