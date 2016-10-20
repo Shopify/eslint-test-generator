@@ -21,7 +21,8 @@ const output = generator({
   paths: [
     'src/',
     'test/**/*.js'
-  ]
+  ],
+  maxWarnings: 0
 });
 
 console.log(output); // generated JS source for tests using mocha
@@ -51,6 +52,8 @@ The following options can be passed to `eslint-test-generator`:
   + `src/` 
   + `['src/filesToLint/**.js', 'test/'']`
   + etc.
+- `maxWarnings` - Optional (default: -1), equivalent to `--max-warnings` on
+  eslint's CLI. `-1` means there is no maximum.
 
 ## License
 

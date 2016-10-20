@@ -20,15 +20,16 @@ export default (opts) => {
           return `- ${suiteName}`;
         })
         .join('\n')}\n` +
-      'Or it should be a handlebars template which defines and sets up your tests (see README.md)\n\n'
+      'Or it should be a handlebars template which defines and sets up your tests (see README.md)\n\n',
     );
   }
 
   const options = Object.assign(
     {
       optsEslint: null,
+      maxWarnings: -1,
     },
-    opts
+    opts,
   );
 
   // the following will get an array of all paths to lint
