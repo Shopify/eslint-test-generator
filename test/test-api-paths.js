@@ -19,7 +19,7 @@ export default () => {
       },
     });
 
-    assert(generatedTests, expected, 'generated source matched expected source');
+    assert.equal(generatedTests, expected, 'generated source matched expected source');
   });
 
   it('path should work when using a string', () => {
