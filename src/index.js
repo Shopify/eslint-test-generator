@@ -27,6 +27,7 @@ export default (opts) => {
   const options = Object.assign(
     {
       optsEslint: null,
+      maxWarnings: -1
     },
     opts
   );

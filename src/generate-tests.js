@@ -4,17 +4,25 @@ import path from 'path';
 
 import resolveTemplate from './resolve-template';
 
+function isLintOk(opts, results) {
+  if (opts.maxWarnings === -1) {
+    return results.errorCount === 0;
+  }
+
+  return results.errorCount === 0 && results.warningCount <= opts.maxWarnings;
+}
+
 export default (opts, results) => {
   const handleBarsData = {
     results: results.map((lintResult) => {
       const file = path.relative(process.cwd(), lintResult.filePath);
-      const lintOK = lintResult.errorCount === 0;
+      const lintOK = isLintOk(opts, lintResult);
       let message;
 
-      if (lintResult.errorCount > 0) {
-        message = `${file} should pass lint.\\n${jsStringEscape(renderErrors(lintResult.messages))}`;
-      } else {
+      if (lintOK) {
         message = `${file} should pass lint.`;
+      } else {
+        message = `${file} should pass lint.\\n${jsStringEscape(renderErrors(lintResult.messages))}`;
       }
 
       return {file, lintOK, message};
