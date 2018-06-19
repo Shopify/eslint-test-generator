@@ -1,3 +1,5 @@
+[![Travis](https://travis-ci.com/Shopify/eslint-test-generator.svg?branch=master)](https://travis-ci.com/Shopify/eslint-test-generator)
+
 # eslint-test-generator
 
 Will create test scripts based on eslint output. Basically developers can't ignore linting if it's integrated into ci. `eslint-test-generator` out of the box currently supports:
